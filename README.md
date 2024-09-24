@@ -153,4 +153,92 @@ Adjective      45.09058 -45.09058
 Non-Adjective -45.09058  45.09058
 > write.csv(std_residuals, "little_std_residuals.csv", row.names = TRUE)
 >
+> > other_data <- data[data$Item == "other" & data$Part_of_Speech == "JJ", ]
+> female_count <- sum(other_data$Count[other_data$Source == "female"])
+> male_count <- sum(other_data$Count[other_data$Source == "male"])
+> female_non_adj_count <- sum(data$Count[data$Source == "female"]) - female_count
+> male_non_adj_count <- sum(data$Count[data$Source == "male"]) - male_count
+> observed <- matrix(c(female_count, male_count, female_non_adj_count, male_non_adj_count),
++                    nrow = 2,
++                    byrow = TRUE,
++                    dimnames = list(c("Adjective", "Non-Adjective"),
++                                    c("Female", "Male")))
+> chisq_test <- chisq.test(observed)
+> std_residuals <- round(chisq_test$stdres, 2)
+> print(chisq_test)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  observed
+X-squared = 375.84, df = 1, p-value < 2.2e-16
+
+> print(std_residuals)
+              Female   Male
+Adjective     -19.39  19.39
+Non-Adjective  19.39 -19.39
+> write.csv(std_residuals, "other_std_residuals.csv", row.names = TRUE)
+>
+> > good_data <- data[data$Item == "good" & data$Part_of_Speech == "JJ", ]
+> female_count <- sum(good_data$Count[good_data$Source == "female"])
+> male_count <- sum(good_data$Count[good_data$Source == "male"])
+> female_non_adj_count <- sum(data$Count[data$Source == "female"]) - female_count
+> male_non_adj_count <- sum(data$Count[data$Source == "male"]) - male_count
+> observed <- matrix(c(female_count, male_count, female_non_adj_count, male_non_adj_count), nrow = 2, byrow = TRUE, dimnames = list(c("Adjective", "Non-Adjective"), c("Female", "Male")))
+> chisq_test <- chisq.test(observed)
+> std_residuals <- round(chisq_test$stdres, 2)
+> print(chisq_test)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  observed
+X-squared = 29.169, df = 1, p-value = 6.632e-08
+
+> print(std_residuals)
+              Female  Male
+Adjective       5.41 -5.41
+Non-Adjective  -5.41  5.41
+> write.csv(std_residuals, "good_std_residuals.csv", row.names = TRUE)
+>
+> > old_data <- data[data$Item == "old" & data$Part_of_Speech == "JJ", ]
+> female_count <- sum(old_data$Count[old_data$Source == "female"])
+> male_count <- sum(old_data$Count[old_data$Source == "male"])
+> female_non_adj_count <- sum(data$Count[data$Source == "female"]) - female_count
+> male_non_adj_count <- sum(data$Count[data$Source == "male"]) - male_count
+> observed <- matrix(c(female_count, male_count, female_non_adj_count, male_non_adj_count), nrow = 2, byrow = TRUE, dimnames = list(c("Adjective", "Non-Adjective"), c("Female", "Male")))
+> chisq_test <- chisq.test(observed)
+> std_residuals <- round(chisq_test$stdres, 2)
+> print(chisq_test)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  observed
+X-squared = 382.1, df = 1, p-value < 2.2e-16
+
+> print(std_residuals)
+              Female   Male
+Adjective      19.55 -19.55
+Non-Adjective -19.55  19.55
+> write.csv(std_residuals, "old_std_residuals.csv", row.names = TRUE)
+>
+> own_data <- data[data$Item == "own" & data$Part_of_Speech == "JJ", ]
+> female_count <- sum(own_data$Count[own_data$Source == "female"])
+> male_count <- sum(own_data$Count[own_data$Source == "male"])
+> female_non_adj_count <- sum(data$Count[data$Source == "female"]) - female_count
+> male_non_adj_count <- sum(data$Count[data$Source == "male"]) - male_count
+> observed <- matrix(c(female_count, male_count, female_non_adj_count, male_non_adj_count), nrow = 2, byrow = TRUE, dimnames = list(c("Adjective", "Non-Adjective"), c("Female", "Male")))
+> chisq_test <- chisq.test(observed)
+> std_residuals <- round(chisq_test$stdres, 2)
+> print(chisq_test)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  observed
+X-squared = 38.809, df = 1, p-value = 4.675e-10
+
+> print(std_residuals)
+              Female  Male
+Adjective       6.24 -6.24
+Non-Adjective  -6.24  6.24
+> write.csv(std_residuals, "own_std_residuals.csv", row.names = TRUE)
+>
 > 

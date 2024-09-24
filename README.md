@@ -229,16 +229,7 @@ Non-Adjective -19.55  19.55
 > chisq_test <- chisq.test(observed)
 > std_residuals <- round(chisq_test$stdres, 2)
 > print(chisq_test)
-
-	Pearson's Chi-squared test with Yates' continuity correction
-
-data:  observed
-X-squared = 38.809, df = 1, p-value = 4.675e-10
-
 > print(std_residuals)
-              Female  Male
-Adjective       6.24 -6.24
-Non-Adjective  -6.24  6.24
 > write.csv(std_residuals, "own_std_residuals.csv", row.names = TRUE)
 >
 > 
